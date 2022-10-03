@@ -36,6 +36,7 @@ public class Stu_GUI extends JFrame implements ActionListener {
 
 	private JButton jb1;// 负责启动学生的两个用例：选课与查看成绩单
 	private JButton jb2;
+	public JButton b2;
 	private JPanel jp;
 	private JLabel title;
 
@@ -59,7 +60,7 @@ public class Stu_GUI extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 
-		this.setTitle("学生选课系统");
+		this.setTitle("SCSS");
 
 		// 设置窗口大小
 		sys_width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -73,18 +74,29 @@ public class Stu_GUI extends JFrame implements ActionListener {
 		this.setLayout(new GridLayout(2, 1));
 
 		// 欢迎语
-		title = new JLabel("欢迎使用学生选课系统！", JLabel.CENTER);
+		title = new JLabel("Welcome to SCSS!", JLabel.CENTER);
 		this.add(title);
 
 		// 两个功能
-		jb1 = new JButton("选课");
-		jb2 = new JButton("查看成绩单");
+		jb1 = new JButton("Course selection");
+		jb2 = new JButton("View Transcripts");
+		b2=new JButton("Back");
 		jb1.addActionListener(this);
 		jb2.addActionListener(this);
+		b2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+				Main_Login_GUI rg=new Main_Login_GUI();
+			}
+		});
 		jp = new JPanel();
 		jp.setLayout(new GridLayout(1, 2));
 		jp.add(jb1);
 		jp.add(jb2);
+		jp.add(b2);
 		this.add(jp);
 
 		this.setVisible(true);
@@ -107,10 +119,10 @@ public class Stu_GUI extends JFrame implements ActionListener {
 				char res = dis.readChar();
 				System.out.println(res);
 				if(res == '2') {
-					setVisible(false);
+					setVisible(true);
 					new CourseRegistration(this);
 				}else if(res == '1') {
-					JOptionPane.showMessageDialog(this,"注册关闭", "消息", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(this,"Registration closed", "消息", JOptionPane.PLAIN_MESSAGE);
 				}
 			}catch(Exception e1) {
 				e1.printStackTrace();

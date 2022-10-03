@@ -37,12 +37,14 @@ class Main_Login_GUI extends JFrame implements ActionListener
 	public JPanel jp;
 	public JPanel jp2;
 	public JPanel jp3;
+	public JPanel con;
 	public JTextField nameField;//输入用户名
 	public JPasswordField pwField;//输入密码
 	public JLabel nameLabel;
 	public JLabel pwLabel;
 	public JButton jb1;
 	public JButton jb2;
+	public JButton b2;
 	
 	//网络编程相关属性
 	public Socket socket;
@@ -54,8 +56,10 @@ class Main_Login_GUI extends JFrame implements ActionListener
 		jp2 = new JPanel();
 		jp3 =  new JPanel();
 		//GUI标题
-		this.setTitle("学生选课管理系统");
-		
+		this.setTitle("SRS");
+		JPanel con=new JPanel();
+
+
 		//设置窗口大小
 		sys_width = Toolkit.getDefaultToolkit().getScreenSize().width;
 	    sys_height = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -70,39 +74,55 @@ class Main_Login_GUI extends JFrame implements ActionListener
 	    
 	    
 	    //欢迎语
-	    title = new JLabel("欢迎使用学生选课管理系统",JLabel.CENTER);
+	    title = new JLabel("Welcome to SRS!",JLabel.CENTER);
 	    this.add(title);
 	    
 		
 	    //输入登录信息
 	    jp2.setLayout(new GridLayout(2,2,10,5));
-	    nameLabel = new JLabel("用户名:",JLabel.CENTER);
+	    nameLabel = new JLabel("ID:",JLabel.CENTER);
 	    nameField = new JTextField();
-	    pwLabel = new JLabel("密码:",JLabel.CENTER);
+	    pwLabel = new JLabel("Password:",JLabel.CENTER);
 	    pwField = new JPasswordField();
 	    jp2.add(nameLabel);
 	    jp2.add(nameField);
 	    jp2.add(pwLabel);
 	    jp2.add(pwField);
 	    this.add(jp2);
-	    
+
+
+
 	    //选择身份
 	    jc = new JComboBox<String>();
-	    jc.addItem("---请选择您的身份---");
-	    jc.addItem("注册员");
-	    jc.addItem("学生");
-	    jc.addItem("教授");
+	    jc.addItem("---select your identity ---");
+	    jc.addItem("Registrar");
+	    jc.addItem("Student");
+	    jc.addItem("Professor");
 	    jp.add(jc);
 	    this.add(jp);
 	    
 	    //确定与取消按钮
-	    jb1 = new JButton("登录");
-	    jb2 = new JButton("取消");
+	    jb1 = new JButton("Log in");
+	    jb2 = new JButton("Cancel");
+
+//		b2=new JButton("返回");
+
+//		b2.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				dispose();
+//				Registrar_GUI rg=new Registrar_GUI(socket);
+//			}
+//		});
+//		b2.addActionListener(this);
 	    jb1.addActionListener(this);
 	    jb2.addActionListener(this);
 	    jp3.setLayout(new GridLayout(1,2));
 	    jp3.add(jb1);
 	    jp3.add(jb2);
+//		jp3.add(b2);
 	    this.add(jp3);
 	    
 	    this.setVisible(true);
@@ -131,7 +151,7 @@ class Main_Login_GUI extends JFrame implements ActionListener
 		 * 事件监听，主界面只有一种事件：登录
 		 */
 		String buttonName = e.getActionCommand();
-		if(buttonName.equals("登录")) {
+		if(buttonName.equals("Log in")) {
 			//保存输入的身份、用户名、密码
 			name = new String(nameField.getText());
 			pw = new String(pwField.getPassword());
@@ -144,7 +164,7 @@ class Main_Login_GUI extends JFrame implements ActionListener
 					this.dispose();
 					Stu_GUI stu_GUI = new Stu_GUI(name,pw,socket);
 				}else {
-					JOptionPane.showMessageDialog(null, "输入的用户名或密码有误，请重新输入！", "错误",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Wrong id or password", "Error",JOptionPane.ERROR_MESSAGE);
 				}
 			}else if (temp==3) {//当前是教授
 				if(isCorrect(temp)) {
@@ -156,7 +176,7 @@ class Main_Login_GUI extends JFrame implements ActionListener
 						String canselcourse=dis.readUTF();//看返回的是否为空决定课程是否被取消
 						if(canselcourse.equals("没有取消的课程")==false)//课程被取消
 						{
-							JOptionPane.showMessageDialog(null,canselcourse , "提示",JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null,canselcourse , "Prompt",JOptionPane.WARNING_MESSAGE);
 						}
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
@@ -165,11 +185,11 @@ class Main_Login_GUI extends JFrame implements ActionListener
 					this.dispose();
 					Prof_GUI prof_GUI = new Prof_GUI(name,pw,socket);
 				}else {
-					JOptionPane.showMessageDialog(null, "输入的用户名或密码有误，请重新输入！", "错误",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Wrong id or password", "错误",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
-		else if(buttonName.equals("取消")){
+		else if(buttonName.equals("Cancel")){
 			this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 	}
