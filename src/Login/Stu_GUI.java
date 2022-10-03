@@ -92,6 +92,8 @@ public class Stu_GUI extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+
+		// TODO: need fix
 		if (e.getSource() == jb1) { // 选课功能
 			/*
 			 * 1.判断当前服务端是否处于可以选课的状态内 2.若已关闭注册，则弹出对话框提示错误，回到学生GUI的首界面
