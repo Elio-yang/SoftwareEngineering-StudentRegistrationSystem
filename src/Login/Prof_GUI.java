@@ -110,6 +110,7 @@ public class Prof_GUI extends JFrame implements ActionListener{
         this.add(label2);
         
 	    //两个功能
+
 	    jb1 = new JButton("选择执教课程");
 	    jb1.setBounds(50,200,130,40);
 	    this.add(jb1);
