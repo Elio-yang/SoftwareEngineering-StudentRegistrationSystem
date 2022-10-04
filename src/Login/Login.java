@@ -56,7 +56,7 @@ class Main_Login_GUI extends JFrame implements ActionListener
 		jp2 = new JPanel();
 		jp3 =  new JPanel();
 		//GUI标题
-		this.setTitle("SRS");
+		this.setTitle("CRS");
 		JPanel con=new JPanel();
 
 
@@ -74,15 +74,15 @@ class Main_Login_GUI extends JFrame implements ActionListener
 	    
 	    
 	    //欢迎语
-	    title = new JLabel("Welcome to SRS!",JLabel.CENTER);
+	    title = new JLabel("Welcome to CRS!",JLabel.CENTER);
 	    this.add(title);
 	    
 		
 	    //输入登录信息
 	    jp2.setLayout(new GridLayout(2,2,10,5));
-	    nameLabel = new JLabel("ID:",JLabel.CENTER);
+	    nameLabel = new JLabel("ID",JLabel.CENTER);
 	    nameField = new JTextField();
-	    pwLabel = new JLabel("Password:",JLabel.CENTER);
+	    pwLabel = new JLabel("Password",JLabel.CENTER);
 	    pwField = new JPasswordField();
 	    jp2.add(nameLabel);
 	    jp2.add(nameField);
@@ -94,7 +94,7 @@ class Main_Login_GUI extends JFrame implements ActionListener
 
 	    //选择身份
 	    jc = new JComboBox<String>();
-	    jc.addItem("---select your identity ---");
+	    jc.addItem("--- Authentication ---");
 	    jc.addItem("Registrar");
 	    jc.addItem("Student");
 	    jc.addItem("Professor");
@@ -102,7 +102,7 @@ class Main_Login_GUI extends JFrame implements ActionListener
 	    this.add(jp);
 	    
 	    //确定与取消按钮
-	    jb1 = new JButton("Log in");
+	    jb1 = new JButton("Log In");
 	    jb2 = new JButton("Cancel");
 
 //		b2=new JButton("返回");
@@ -151,7 +151,7 @@ class Main_Login_GUI extends JFrame implements ActionListener
 		 * 事件监听，主界面只有一种事件：登录
 		 */
 		String buttonName = e.getActionCommand();
-		if(buttonName.equals("Log in")) {
+		if(buttonName.equals("Log In")) {
 			//保存输入的身份、用户名、密码
 			name = new String(nameField.getText());
 			pw = new String(pwField.getPassword());
@@ -185,7 +185,7 @@ class Main_Login_GUI extends JFrame implements ActionListener
 					this.dispose();
 					Prof_GUI prof_GUI = new Prof_GUI(name,pw,socket);
 				}else {
-					JOptionPane.showMessageDialog(null, "Wrong id or password", "错误",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Wrong id or password", "Error",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}

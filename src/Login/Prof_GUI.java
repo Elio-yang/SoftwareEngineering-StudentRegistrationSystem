@@ -64,10 +64,10 @@ public class Prof_GUI extends JFrame implements ActionListener{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		this.setTitle("教授选课系统");
+		this.setTitle("PCRS");
 		
-		 jb3=new JButton("返回");//返回上一层
-		 jb3.setBounds(0,0,80,30);
+		 jb3=new JButton("Back");//返回上一层
+		 jb3.setBounds(0,5,80,30);
 	     this.add(jb3);
 		//设置窗口大小
 		sys_width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -88,33 +88,33 @@ public class Prof_GUI extends JFrame implements ActionListener{
 			        new BufferedInputStream(socket.getInputStream()));
 			DataOutputStream dos = new DataOutputStream(
                 new BufferedOutputStream(socket.getOutputStream()));
-			System.out.println("向服务器发送2y代码");
+			System.out.println("->server: 2y");
 			dos.writeUTF("2y");
 			dos.flush();
 			dos.writeUTF(user_id);
 			dos.flush();
 			pname=dis.readUTF();
-			System.out.println("profgui界面标签判断出教授名字："+pname);
+			System.out.println("prof GUI @prof_name:"+pname);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        label1=new JLabel("您好，"+pname+"老师！");//显示当前学期
-        label1.setFont(new Font("楷体", Font.PLAIN, 18));
-        label1.setBounds(100,80,300,20);
+        label1=new JLabel("Hello Prof."+pname);//显示当前学期
+        label1.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+        label1.setBounds(100,80,300,25);
         this.add(label1);
         
-        label2=new JLabel("欢迎使用教授选课系统！");//显示当前学期
-        label2.setFont(new Font("楷体", Font.PLAIN, 18));
-        label2.setBounds(70,120,300,20);
+        label2=new JLabel("Welcome !");//显示当前学期
+        label2.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+        label2.setBounds(100,120,300,20);
         this.add(label2);
         
 	    //两个功能
 
-	    jb1 = new JButton("选择执教课程");
+	    jb1 = new JButton("Choose Courses");
 	    jb1.setBounds(50,200,130,40);
 	    this.add(jb1);
-	    jb2 = new JButton("提交成绩");
+	    jb2 = new JButton("Submit Grades");
 	    jb2.setBounds(200,200,100,40);
 	    this.add(jb2);
 	    jb1.addActionListener(this);

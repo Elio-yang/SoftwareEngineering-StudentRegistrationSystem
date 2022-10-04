@@ -12,8 +12,8 @@ public class Database {
 	// build a system based on mysql-8
 	// create db called admininstration_system
 
-	private static String dbOldUrl = "jdbc:mysql://xxxx/course_catalog";
-	private static String dbNewUrl = "jdbc:mysql://xxxx/admininstration_system";
+	private static String dbOldUrl = "jdbc:mysql://81.70.59.2/course_catalog";
+	private static String dbNewUrl = "jdbc:mysql://81.70.59.2/admininstration_system";
 	private static String dbUser = "root";
 	private static String dbPwd = "root";
 	static {

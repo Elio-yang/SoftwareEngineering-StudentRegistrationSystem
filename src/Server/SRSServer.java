@@ -171,7 +171,8 @@ class SingleServer implements Runnable {
                     } else if (request.charAt(1) == '8')
                         student.ViewGrades();
                     //补充：此处添加else if或是改成switch，补充完善学生角色的其他用例
-                } else if (request.toCharArray()[0] == '2') {//客户端身份是教授
+                }
+                else if (request.toCharArray()[0] == '2') {//客户端身份是教授
                     idendity = 2;
                     if (request.toCharArray()[1] == '0') {  //请求登录
                         String id = dis.readUTF();
@@ -201,7 +202,7 @@ class SingleServer implements Runnable {
 
                         dos.writeInt(i + 1);//告诉客户端有几行,包括属性名
                         dos.flush();
-                        System.out.print("我发了" + i + "行");
+                        System.out.println("我发了" + i + "行");
 
                         rs.beforeFirst();//光标移动到第一行之前
                         dos.writeUTF("cid");
@@ -381,7 +382,8 @@ class SingleServer implements Runnable {
                     else if (request.charAt(1) == '7')
                         professor.SubmitGrades();
                     //补充：此处添加else if或是改成switch，补充完善教授角色的其他用例
-                } else if (request.toCharArray()[0] == '3') {//客户端身份是注册员
+                }
+                else if (request.toCharArray()[0] == '3') {//客户端身份是注册员
                     idendity = 3;
                     if (request.toCharArray()[1] == '2') { //关闭注册
                         String res = register.close_Registration();
