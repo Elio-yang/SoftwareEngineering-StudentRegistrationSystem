@@ -248,6 +248,8 @@ public class Prof_GUI extends JFrame implements ActionListener{
 			}
 		}else if(e.getSource()==jb2) {  //提交成绩
 			//补充：执行提交成绩用例
+			SubmitGrade mp=new SubmitGrade(socket);
+			dispose();
 		}
 		else if(e.getSource()==jb3) {  //返回上一层
 			dispose();

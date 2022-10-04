@@ -263,7 +263,13 @@ class SingleServer implements Runnable {
 
                         System.out.println("服务器人数减一");
                         SRSServer.isRegistration--;
-                    } else if (request.toCharArray()[1] == 'a')//判断选课是否冲突
+                    }else if(request.toCharArray()[1] == 'o') {
+
+                        System.out.println("检索教授过的课程");
+                        professor.ViewGrades();
+
+                    }
+                    else if (request.toCharArray()[1] == 'a')//判断选课是否冲突
                     {
                         System.out.println("服务器查询是否有冲突的教授是" + idString);
                         String timeslot = dis.readUTF();//选择课程的时间，判断是否冲突
