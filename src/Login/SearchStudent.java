@@ -32,7 +32,7 @@ public class SearchStudent extends JFrame{
 	private DataOutputStream dos;
 	public SearchStudent(Socket socket)  {
 		// TODO Auto-generated constructor stub
-		super("教授信息查询");
+		super("学生信息查询");
 		this.socket=socket;
 		try {
 			dis = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
@@ -110,7 +110,7 @@ public class SearchStudent extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-					String sql="select * from Student where "+mmp.get(tp)+"='"+tf.getText().trim()+"'";// ('"+pid+"','"+name+"','"+birthday+"','"+ssn+"','"+depart+"','"+password+"','"+status+"')";   //SQL语句
+					String sql="select * from student where "+mmp.get(tp)+"='"+tf.getText().trim()+"'";// ('"+pid+"','"+name+"','"+birthday+"','"+ssn+"','"+depart+"','"+password+"','"+status+"')";   //SQL语句
 					try {
 						dos.writeUTF("341"+"#"+sql);
 						dos.flush();
