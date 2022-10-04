@@ -229,6 +229,45 @@ public class Professor {
         return rs;//如果为空说明没冲突，不为空说明有冲突
     }
 
+    public void ViewGrades() throws IOException {
+        int i=0;
+        try {
+
+            String sql;
+            PreparedStatement pst;
+
+            sql = "select * from course_selection where pid = "+id+" ";
+            pst = conn.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            //pst.setString(1, id);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                i++;
+            }
+            rs = pst.executeQuery();
+            dos.writeUTF(String.valueOf(i) );
+            while (rs.next()) {
+                dos.writeUTF(rs.getString("course"));
+                dos.writeUTF(rs.getString("sid"));
+                dos.writeUTF(rs.getString("name"));
+
+                dos.writeUTF(rs.getString("grade"));
+                dos.flush();
+
+            }
+
+            dos.writeUTF("end");
+            dos.flush();
+
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+
+    }
+
     public ResultSet selectedCourse(String pid) {//查询已经选择的课程，参数是教授id
         String sql;
         try {

@@ -105,7 +105,7 @@ public class AddStudent extends JFrame{
 					//String depart= tf7.getText().trim();
 					
 					try {
-						String sql="insert into Student values('"+sid+"','"+password+"','"+name+"','"+birthday+"','"+ssn+"','"+status+"')"; 
+						String sql="insert into student values('"+sid+"','"+password+"','"+name+"','"+birthday+"','"+ssn+"','"+status+"')";
 						 dos.writeUTF("33"+"#"+sql);
 				         dos.flush();
 				         int success=dis.readInt();

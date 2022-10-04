@@ -99,7 +99,7 @@ public class Prof_GUI extends JFrame implements ActionListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        label1=new JLabel("Hello Prof."+pname);//显示当前学期
+        label1=new JLabel("Hello Prof."+pname);//显示教授姓名
         label1.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         label1.setBounds(100,80,300,25);
         this.add(label1);
@@ -112,10 +112,10 @@ public class Prof_GUI extends JFrame implements ActionListener{
 	    //两个功能
 
 	    jb1 = new JButton("Choose Courses");
-	    jb1.setBounds(50,200,130,40);
+	    jb1.setBounds(30,200,130,40);
 	    this.add(jb1);
 	    jb2 = new JButton("Submit Grades");
-	    jb2.setBounds(200,200,100,40);
+	    jb2.setBounds(170,200,130,40);
 	    this.add(jb2);
 	    jb1.addActionListener(this);
 	    jb2.addActionListener(this);
@@ -248,6 +248,8 @@ public class Prof_GUI extends JFrame implements ActionListener{
 			}
 		}else if(e.getSource()==jb2) {  //提交成绩
 			//补充：执行提交成绩用例
+			SubmitGrade mp=new SubmitGrade(socket);
+			dispose();
 		}
 		else if(e.getSource()==jb3) {  //返回上一层
 			dispose();
