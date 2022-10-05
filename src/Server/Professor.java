@@ -236,7 +236,7 @@ public class Professor {
             String sql;
             PreparedStatement pst;
 
-            sql = "select * from course_selection where pid = "+id+" ";
+            sql = "select * from course_selection2 where pid = "+id+" ";
             pst = conn.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             //pst.setString(1, id);
 
