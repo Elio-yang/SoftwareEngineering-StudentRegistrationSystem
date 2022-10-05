@@ -54,6 +54,7 @@ public class Prof_GUI extends JFrame implements ActionListener{
 	public Prof_GUI(String name, String pw,Socket socket) {
 		this.user_id = name;
 		this.password = pw;
+
 		this.socket=socket;
 		try {
 			this.dis = new DataInputStream(
@@ -248,7 +249,7 @@ public class Prof_GUI extends JFrame implements ActionListener{
 			}
 		}else if(e.getSource()==jb2) {  //提交成绩
 			//补充：执行提交成绩用例
-			SubmitGrade mp=new SubmitGrade(socket);
+			SubmitGrade mp=new SubmitGrade(socket,user_id,password);
 			dispose();
 		}
 		else if(e.getSource()==jb3) {  //返回上一层

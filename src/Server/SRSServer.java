@@ -268,6 +268,13 @@ class SingleServer implements Runnable {
                         System.out.println("检索教授过的课程");
                         professor.ViewGrades();
 
+                    }else if(request.toCharArray()[1]=='u'){
+                        System.out.println("成绩登记");
+                        String sid=dis.readUTF();
+                        String course=dis.readUTF();
+                        String grade=dis.readUTF();
+
+                        professor.UpdateGrades(grade,sid,course);
                     }
                     else if (request.toCharArray()[1] == 'a')//判断选课是否冲突
                     {
