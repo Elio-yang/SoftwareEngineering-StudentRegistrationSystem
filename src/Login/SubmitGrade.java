@@ -14,6 +14,8 @@ import javax.xml.crypto.Data;
 
 import java.util.*;
 import javax.swing.*;
+
+
 public class SubmitGrade extends JFrame {
     private Socket socket;
     private DataInputStream dis;
@@ -21,7 +23,7 @@ public class SubmitGrade extends JFrame {
 
     private DataOutputStream dos;
     private Vector<String> idd=new Vector<String>();
-    public SubmitGrade(Socket socket)   {
+    public SubmitGrade(Socket socket,String user_id,String pw)  {
         super("成绩登记");
         this.socket=socket;
         try {
@@ -111,11 +113,11 @@ public class SubmitGrade extends JFrame {
             con.add(l4[0]);
 
             //con.add(l7);
-            jl10.setBounds(35, 120+70*i, 60, 25);//控制位置随信息的条数增加变化
-            l1.setBounds(135, 120+70*i, 60, 25);
-            l2.setBounds(235, 120+70*i, 60, 25);
-            l3.setBounds(365, 120+70*i, 60, 25);
-            l4[0].setBounds(465, 120+70*i, 60, 25);
+            jl10.setBounds(35, 120+60*i, 60, 25);//控制位置随信息的条数增加变化
+            l1.setBounds(135, 120+60*i, 60, 25);
+            l2.setBounds(235, 120+60*i, 60, 25);
+            l3.setBounds(365, 120+60*i, 60, 25);
+            l4[0].setBounds(465, 120+60*i, 60, 25);
 
             //l7.setBounds(815, 120+70*i, 60, 25);
             JComboBox jc=new JComboBox();//选择查找标准的下拉框
@@ -148,17 +150,17 @@ public class SubmitGrade extends JFrame {
 
                         int temp = jc.getSelectedIndex();
                         if(temp==1){
-                            grade="a";
+                            grade="A";
                         }else if(temp==2){
-                            grade="b";
+                            grade="B";
                         }else if(temp==3){
-                            grade="c";
+                            grade="C";
                         }else if(temp==4){
-                            grade="d";
+                            grade="D";
                         }else if(temp==5){
-                            grade="e";
+                            grade="E";
                         }else if(temp==6){
-                            grade="f";
+                            grade="F";
                         }
                     }
                     con.remove(l4[0]);
@@ -166,7 +168,17 @@ public class SubmitGrade extends JFrame {
 
                     con.add(l4[0]);
                     l4[0].setBounds(465, 120+70* finalI, 60, 25);
+                    try {
+                        dos.writeUTF("2u");
+                        dos.writeUTF(sid);
+                        dos.writeUTF(course);
+                        dos.writeUTF(grade);
+                        dos.flush();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
+
             });
 
             jb.setBounds(660, 120+70*i, 100, 24);
@@ -187,8 +199,10 @@ public class SubmitGrade extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
+                System.out.println("返回教授");
+                Prof_GUI rg=new Prof_GUI(user_id,pw,socket);
+
                 dispose();
-                Registrar_GUI rg=new Registrar_GUI(socket);
             }
         });
         setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -236,7 +236,7 @@ public class Professor {
             String sql;
             PreparedStatement pst;
 
-            sql = "select * from course_selection where pid = "+id+" ";
+            sql = "select * from course_selection2 where pid = "+id+" ";
             pst = conn.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             //pst.setString(1, id);
 
@@ -258,7 +258,34 @@ public class Professor {
 
             }
 
-            dos.writeUTF("end");
+
+            dos.flush();
+
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+
+    }
+
+    public void UpdateGrades(String grade,String sid,String course) throws IOException {
+        try {
+            String sql;
+            PreparedStatement pst;
+            sql = "update course_selection2 set grade= '"+grade+"' where sid='"+sid+"' and course='"+course+"' and pid='"+id+"' ";
+            pst = conn.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            //pst.setString(1, id);
+
+            int rs = pst.executeUpdate(sql);
+
+            if(rs==1){
+                System.out.println("更改成功");
+            }else{
+                System.out.println("更改失败");
+            }
+
+            dos.writeUTF(name);
+            dos.writeUTF(password);
             dos.flush();
 
         } catch (SQLException e1) {
